@@ -18,5 +18,5 @@ const SITE_CONFIG = {
   SLIDE_DURATION: 4000,
   MUSIC_FILE: "music/our-song.mp3",
   // Paste your deployed Cloudflare Worker URL here after setup, e.g. https://nisa-wishes.your-name.workers.dev
-  AI_ENDPOINT: ""
+  AI_ENDPOINT: "https://cute-billi-ai-wishes.meherab-cute-billi.workers.dev"
 };
