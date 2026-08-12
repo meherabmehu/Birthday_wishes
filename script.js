@@ -31,32 +31,20 @@ function unlockSurprise() {
 unlock.addEventListener('click', unlockSurprise);
 passcode.addEventListener('keydown', (event) => { if (event.key === 'Enter') unlockSurprise(); });
 
-const photos = SITE_CONFIG.PHOTOS || [];
-const image = $('#slide-image');
-const empty = $('#empty-gallery');
-const overlay = document.querySelector('.slide-overlay');
-const count = $('#slide-count');
-let active = 0, timer;
-function showSlide(index) {
-  active = (index + photos.length) % photos.length;
-  image.classList.add('fade-out');
-  setTimeout(() => {
-    image.src = photos[active];
-    image.onload = () => image.classList.remove('fade-out');
-    count.textContent = `${String(active + 1).padStart(2, '0')} / ${String(photos.length).padStart(2, '0')}`;
-  }, 230);
-}
-function runGallery() {
-  if (!photos.length) return;
-  empty.hidden = true; image.hidden = false; overlay.hidden = false;
-  showSlide(0);
-  timer = setInterval(() => showSlide(active + 1), SITE_CONFIG.SLIDE_DURATION || 4000);
-}
-$('#next').addEventListener('click', () => { clearInterval(timer); showSlide(active + 1); });
-$('#previous').addEventListener('click', () => { clearInterval(timer); showSlide(active - 1); });
-runGallery();
+// The letter stays private until she intentionally opens it.
+$('#open-letter').addEventListener('click', (event) => {
+  event.preventDefault();
+  const letter = $('#letter');
+  letter.hidden = false;
+  letter.classList.add('reveal-ready');
+  requestAnimationFrame(() => letter.classList.add('revealed'));
+  setTimeout(() => letter.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+});
 
-// Soft, cross-fading photo atmosphere: it uses the same photo files as the slideshow.
+const photos = SITE_CONFIG.PHOTOS || [];
+
+// Photos are intentionally used only as a soft, cross-fading atmosphere—not as a separate gallery.
+
 const atmosphereLayers = [...document.querySelectorAll('.photo-layer')];
 let atmospherePhoto = 0;
 function changeAtmosphere() {
@@ -97,6 +85,30 @@ function releaseSpark() {
   setTimeout(() => spark.remove(), 9500);
 }
 setInterval(releaseSpark, 2600);
+
+// Little love notes and birthday wishes float through the page at gentle intervals.
+const floatingNotes = [
+  'Cute Billi, you are my favorite feeling. ♡',
+  'Happy Birthday to my future wife, InshaAllah. ✦',
+  'You make my ordinary days feel beautiful.',
+  'May every dream in your heart find its way to you.',
+  'You are loved—today, tomorrow, always.',
+  'Nisa, you deserve a lifetime full of soft happiness.',
+  'Three years, countless feelings, one favorite person.',
+  'May Allah keep your smile bright and your heart peaceful.'
+];
+function floatLoveNote() {
+  const note = document.createElement('p');
+  note.className = 'floating-note';
+  note.textContent = floatingNotes[Math.floor(Math.random() * floatingNotes.length)];
+  note.style.left = `${4 + Math.random() * 60}vw`;
+  note.style.top = `${30 + Math.random() * 55}vh`;
+  note.style.setProperty('--note-time', `${7 + Math.random() * 3}s`);
+  document.body.appendChild(note);
+  setTimeout(() => note.remove(), 11000);
+}
+setTimeout(floatLoveNote, 1800);
+setInterval(floatLoveNote, 6100);
 
 // A live countdown makes the page feel special before the birthday and changes to a celebration on 20 August.
 function updateCountdown() {

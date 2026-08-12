@@ -25,7 +25,7 @@ PHOTOS: [
 ],
 ```
 
-The slideshow changes automatically every 4 seconds. Change `SLIDE_DURATION: 4000` if needed (milliseconds).
+Your photos automatically cross-fade in the full-page background every few seconds. They are kept subtle and blurred so the love-letter text stays easy to read.
 
 ## Preview locally
 Open `index.html` in any browser. For best results, deploy using GitHub Pages or Netlify.
