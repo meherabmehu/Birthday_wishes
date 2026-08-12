@@ -145,7 +145,16 @@ $('#wish-capsule').addEventListener('click', showWish);
 $('#another-wish').addEventListener('click', showWish);
 
 $('#secret-heart').addEventListener('click', () => { $('#secret-message').hidden = false; $('#secret-heart').classList.add('opened'); });
-document.querySelectorAll('.yes').forEach((button) => button.addEventListener('click', () => { $('#yes-message').hidden = false; document.body.classList.add('celebrate'); }));
+function launchFireworks() {
+  const colors = ['#ffe09a', '#ff9cc4', '#fff0d0', '#dba2ff'];
+  for (let i = 0; i < 44; i++) {
+    const dot = document.createElement('i'); dot.className = 'firework';
+    dot.style.left = `${35 + Math.random() * 30}vw`; dot.style.top = `${35 + Math.random() * 28}vh`;
+    dot.style.setProperty('--fx', `${-210 + Math.random() * 420}px`); dot.style.setProperty('--fy', `${-190 + Math.random() * 260}px`);
+    dot.style.setProperty('--fire', colors[i % colors.length]); document.body.appendChild(dot); setTimeout(() => dot.remove(), 1100);
+  }
+}
+document.querySelectorAll('.yes').forEach((button) => button.addEventListener('click', () => { $('#yes-message').hidden = false; document.body.classList.add('celebrate'); launchFireworks(); }));
 
 // Background music is opt-in: the visitor controls it and browsers never autoplay it unexpectedly.
 const music = $('#background-music');

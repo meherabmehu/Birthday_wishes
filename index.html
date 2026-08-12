@@ -7,6 +7,7 @@
   <title>For My Cute Billi ✦</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="premium.css" />
+  <link rel="stylesheet" href="features.css" />
 </head>
 <body>
   <div id="petals" aria-hidden="true"></div>
@@ -25,7 +26,7 @@
 
     <div id="experience" hidden>
       <div id="photo-atmosphere" aria-hidden="true"><i class="photo-layer layer-one"></i><i class="photo-layer layer-two"></i></div>
-      <div id="cat-world" aria-hidden="true"><span class="cat-actor cat-peek">🐱</span><span class="cat-actor cat-sleep">🐈</span></div>
+      <div id="cat-world" aria-hidden="true"><button id="cat-secret" class="cat-actor cat-peek" aria-label="A curious little cat">🐱</button><span class="cat-actor cat-sleep">🐈</span></div>
       <audio id="background-music" loop preload="none"></audio>
       <button id="music-toggle" class="music-toggle" aria-label="Play background music"><span id="music-icon">♫</span><span id="music-label">Play our song</span></button>
       <section class="screen hero">
@@ -56,6 +57,12 @@
         <div class="section-heading"><span class="eyebrow">OUR LITTLE STORY</span><h2>Three beautiful years of us.</h2></div>
         <p class="center-copy">Three years of love, laughter, little fights, and countless feelings. And still, I choose you—every day, in every version of life.</p>
         <div class="timeline"><div><b>01</b><span>The beginning of something beautiful</span></div><div><b>02</b><span>More understanding, more love</span></div><div><b>03</b><span>Still you. Still us. Forever, InshaAllah.</span></div></div>
+        <div class="forever-counter"><div><b>3</b><span>Years</span></div><div><b>∞</b><span>Memories</span></div><div><b>1</b><span>Forever</span></div></div><p class="forever-line">And InshaAllah, a lifetime still waiting for us.</p>
+      </section>
+
+      <section class="section cake-section">
+        <div class="section-heading"><span class="eyebrow">MAKE A BEAUTIFUL WISH</span><h2>One little candle for Cute Billi.</h2></div>
+        <div class="cake-stage"><button id="birthday-cake" class="birthday-cake" aria-label="Light the birthday candle"><span class="flame"></span><span class="candle"></span><span class="cake-top"></span><span class="cake-body"></span><small>Tap the cake to light your wish</small></button><p id="cake-message" class="cake-message" hidden></p></div>
       </section>
 
       <section class="section capsule-section">
@@ -66,12 +73,20 @@
         </div>
       </section>
 
+      <section class="section voice-section"><div class="section-heading"><span class="eyebrow">FROM MY HEART TO YOURS</span><h2>A small voice note from Meherab.</h2></div><div class="voice-card"><span>〰</span><div><b>For my Cute Billi</b><p>Press play when you want to hear my birthday wish.</p></div><button id="voice-toggle" aria-label="Play voice note">▶</button></div><audio id="voice-note" preload="none"></audio><p id="voice-hint" class="voice-hint">Add <code>music/voice-note.mp3</code> to enable this personal surprise.</p></section>
+
       <section class="section constellation">
         <div class="section-heading"><span class="eyebrow">A FEW THINGS I NEED YOU TO KNOW</span><h2>You are deeply loved.</h2></div>
         <div class="quote-grid"><article>“You are my favorite kind of peace.”</article><article>“With you, even ordinary moments feel like something worth remembering.”</article><article>“You deserve every flower, every prayer, and every beautiful thing this world can offer.”</article><article>“If I had to choose again, I would still choose you—softly, surely, completely.”</article></div>
         <button id="secret-heart" class="secret-heart">♡ <span>Tap for a tiny secret</span></button>
         <p id="secret-message" class="secret-message" hidden>No matter how many wishes you receive today, remember this one the most: <strong>you are deeply loved by Meherab.</strong> 🤍</p>
       </section>
+
+      <section class="section time-section"><div class="section-heading"><span class="eyebrow">A NOTE FOR THE FUTURE</span><h2>Birthday time capsule.</h2></div><div class="time-capsule"><button id="open-capsule" class="capsule-lock">✦<span>Open when you need love</span></button><article id="capsule-letter" hidden><span class="eyebrow">FROM MEHERAB, ALWAYS</span><p>আজ থেকে এক বছর পরও, পাঁচ বছর পরও—আমি চাই তুমি এই message পড়ে জানো, তোমাকে কতটা মন থেকে ভালোবাসা হয়েছিল। জীবন যেমনই হোক, তোমার হাসি আর শান্তির জন্য আমার দোয়া সবসময় থাকবে।</p><strong>Forever cheering for you, my Nisa. 🤍</strong></article></div></section>
+
+      <section class="section quiz-section"><div class="section-heading"><span class="eyebrow">A TINY QUIZ FOR YOU</span><h2>Who knows Cute Billi best?</h2></div><div id="quiz-card" class="quiz-card"><p id="quiz-question">Who loves Cute Billi the most?</p><div id="quiz-options" class="quiz-options"></div><p id="quiz-result" class="quiz-result" aria-live="polite"></p></div></section>
+
+      <section class="section stars-section"><div class="section-heading"><span class="eyebrow">WRITTEN IN THE NIGHT SKY</span><h2>For Nisa, in every little universe.</h2></div><div class="nisa-stars" aria-label="Nisa written in stars"><span>N</span><span>I</span><span>S</span><span>A</span></div></section>
 
       <section class="section gift-section">
         <div class="section-heading"><span class="eyebrow">ONE MORE SURPRISE</span><h2>A gift, from my heart.</h2></div>
@@ -94,6 +109,6 @@
       </section>
     </div>
   </main>
-  <script src="config.js"></script><script src="script.js"></script>
+  <script src="config.js"></script><script src="script.js"></script><script src="feature-script.js"></script>
 </body>
 </html>

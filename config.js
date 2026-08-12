@@ -4,6 +4,7 @@
   2) The 15 photo placeholders are already in the images folder.
      Replace photo-01.jpg, photo-02.jpg etc. with your own photos using the SAME filenames.
   3) To enable the music button, put your own MP3 in music/ and name it: our-song.mp3
+  4) For Meherab's personal voice-note card, add a recording as: music/voice-note.mp3
 */
 const SITE_CONFIG = {
   SECRET_CODE: "meherab",
