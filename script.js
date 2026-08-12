@@ -92,3 +92,22 @@ $('#another-wish').addEventListener('click', showWish);
 
 $('#secret-heart').addEventListener('click', () => { $('#secret-message').hidden = false; $('#secret-heart').classList.add('opened'); });
 document.querySelectorAll('.yes').forEach((button) => button.addEventListener('click', () => { $('#yes-message').hidden = false; document.body.classList.add('celebrate'); }));
+
+// Background music is opt-in: the visitor controls it and browsers never autoplay it unexpectedly.
+const music = $('#background-music');
+const musicToggle = $('#music-toggle');
+const musicLabel = $('#music-label');
+music.src = SITE_CONFIG.MUSIC_FILE;
+musicToggle.addEventListener('click', async () => {
+  if (music.paused) {
+    try { await music.play(); musicLabel.textContent = 'Pause our song'; musicToggle.setAttribute('aria-label', 'Pause background music'); }
+    catch { musicLabel.textContent = 'Add our-song.mp3 first'; }
+  } else { music.pause(); musicLabel.textContent = 'Play our song'; musicToggle.setAttribute('aria-label', 'Play background music'); }
+});
+
+$('#gift-box').addEventListener('click', () => {
+  const box = $('#gift-box');
+  if (box.classList.contains('opened')) return;
+  box.classList.add('opened');
+  setTimeout(() => { $('#gift-reveal').hidden = false; }, 680);
+});

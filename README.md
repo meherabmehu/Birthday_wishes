@@ -36,3 +36,11 @@ On GitHub: **Repository Settings → Pages → Build and deployment → Deploy f
 After GitHub publishes it, you can make a QR code from the public website URL.
 
 > Never put a GitHub Personal Access Token in this repository or share it in chat. If a token was shared, revoke it immediately and generate a replacement only when you truly need it.
+
+## Included photo placeholders
+
+The `images/` folder includes 15 elegant JPEG placeholders named `photo-01.jpg` through `photo-15.jpg`. Replace each file with your own photo while keeping exactly the same filename—no code changes needed.
+
+## Music control
+
+The website includes a visitor-controlled music button. Put an MP3 you are allowed to use in `music/our-song.mp3`; it will then play and pause from the button. The website never tries to autoplay sound.
