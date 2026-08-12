@@ -6,7 +6,7 @@
   3) To enable the music button, put your own MP3 in music/ and name it: our-song.mp3
 */
 const SITE_CONFIG = {
-  SECRET_CODE: "cute-billi",
+  SECRET_CODE: "meherab",
   PHOTOS: [
     "images/photo-01.jpg", "images/photo-02.jpg", "images/photo-03.jpg",
     "images/photo-04.jpg", "images/photo-05.jpg", "images/photo-06.jpg",
