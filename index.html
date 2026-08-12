@@ -31,6 +31,8 @@
           <h1>Happy Birthday,<br><em>Zannatul Ferdoush Nisa</em></h1>
           <p class="subtitle">My Cute Billi <span>😽</span></p>
           <p class="hero-copy">The world became softer, brighter, and more beautiful the day you arrived in it.</p>
+          <div class="countdown" aria-label="Birthday countdown"><div><b id="count-days">00</b><span>days</span></div><i></i><div><b id="count-hours">00</b><span>hours</span></div><i></i><div><b id="count-minutes">00</b><span>minutes</span></div></div>
+          <p id="countdown-label" class="countdown-label">Until your beautiful day ✦</p>
           <a href="#letter" class="button">Open your birthday letter <span>↓</span></a>
         </div>
       </section>
@@ -57,6 +59,14 @@
           <div class="empty-gallery" id="empty-gallery"><span>♡</span><h3>Your photos will appear here</h3><p>Add photos inside the <code>images</code> folder, then list their names in <code>config.js</code>.</p></div>
           <img id="slide-image" alt="A memory of Nisa and Meherab" hidden />
           <div class="slide-overlay" hidden><span id="slide-count">01 / 01</span><div><button id="previous" aria-label="Previous photo">←</button><button id="next" aria-label="Next photo">→</button></div></div>
+        </div>
+      </section>
+
+      <section class="section capsule-section">
+        <div class="section-heading"><span class="eyebrow">A WISH, PICKED JUST FOR YOU</span><h2>Open a little birthday magic.</h2></div>
+        <div class="capsule-wrap">
+          <button id="wish-capsule" class="wish-capsule" aria-label="Open a birthday wish"><span>✦</span><small>tap to open</small></button>
+          <div id="wish-card" class="wish-card" hidden><span class="eyebrow">A NOTE FOR CUTE BILLI</span><p id="wish-text"></p><button id="another-wish">Give me another wish ↻</button></div>
         </div>
       </section>
 
