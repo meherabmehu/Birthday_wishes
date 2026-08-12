@@ -56,6 +56,48 @@ $('#next').addEventListener('click', () => { clearInterval(timer); showSlide(act
 $('#previous').addEventListener('click', () => { clearInterval(timer); showSlide(active - 1); });
 runGallery();
 
+// Soft, cross-fading photo atmosphere: it uses the same photo files as the slideshow.
+const atmosphereLayers = [...document.querySelectorAll('.photo-layer')];
+let atmospherePhoto = 0;
+function changeAtmosphere() {
+  if (!photos.length) return;
+  const layer = atmosphereLayers[atmospherePhoto % atmosphereLayers.length];
+  atmosphereLayers.forEach((item) => item.classList.remove('visible'));
+  layer.style.backgroundImage = `url("${photos[atmospherePhoto % photos.length]}")`;
+  requestAnimationFrame(() => layer.classList.add('visible'));
+  atmospherePhoto++;
+}
+changeAtmosphere();
+if (photos.length) setInterval(changeAtmosphere, 6500);
+
+// Cute Billi's tiny animated companions: a cat dashes across at unexpected moments.
+function sendCatRunning() {
+  const cat = document.createElement('span');
+  cat.className = 'cat-runner';
+  cat.textContent = Math.random() > .5 ? '🐈' : '🐱';
+  cat.style.top = `${12 + Math.random() * 72}vh`;
+  cat.style.setProperty('--run-time', `${8 + Math.random() * 5}s`);
+  document.body.appendChild(cat);
+  setTimeout(() => cat.remove(), 14000);
+}
+setTimeout(sendCatRunning, 2800);
+setInterval(sendCatRunning, 15000);
+
+// Gentle floating romance details, kept sparse so the page stays elegant.
+function releaseSpark() {
+  const spark = document.createElement('span');
+  spark.className = 'romance-spark';
+  spark.textContent = ['♡', '✦', '✧'][Math.floor(Math.random() * 3)];
+  spark.style.left = `${8 + Math.random() * 84}vw`;
+  spark.style.top = `${62 + Math.random() * 28}vh`;
+  spark.style.fontSize = `${14 + Math.random() * 16}px`;
+  spark.style.setProperty('--spark-x', `${-35 + Math.random() * 70}px`);
+  spark.style.setProperty('--spark-time', `${5 + Math.random() * 4}s`);
+  document.body.appendChild(spark);
+  setTimeout(() => spark.remove(), 9500);
+}
+setInterval(releaseSpark, 2600);
+
 // A live countdown makes the page feel special before the birthday and changes to a celebration on 20 August.
 function updateCountdown() {
   const now = new Date();
@@ -104,6 +146,14 @@ musicToggle.addEventListener('click', async () => {
     catch { musicLabel.textContent = 'Add our-song.mp3 first'; }
   } else { music.pause(); musicLabel.textContent = 'Play our song'; musicToggle.setAttribute('aria-label', 'Play background music'); }
 });
+
+// Smooth section entrances keep the journey premium rather than a static long page.
+const revealSections = document.querySelectorAll('.section');
+revealSections.forEach((section) => section.classList.add('reveal-ready'));
+const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+  if (entry.isIntersecting) { entry.target.classList.add('revealed'); revealObserver.unobserve(entry.target); }
+}), { threshold: .13 });
+revealSections.forEach((section) => revealObserver.observe(section));
 
 $('#gift-box').addEventListener('click', () => {
   const box = $('#gift-box');
