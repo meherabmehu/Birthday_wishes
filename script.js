@@ -126,25 +126,8 @@ function updateCountdown() {
 }
 updateCountdown(); setInterval(updateCountdown, 30000);
 
-const birthdayWishes = [
-  'May your smile stay as bright as the love you bring into my life. Happy Birthday, my Cute Billi.',
-  'My prayer for you: a peaceful heart, a beautiful life, and dreams that come true one by one.',
-  'You are one of Allah’s most precious gifts in my life. I hope today reminds you how loved you are.',
-  'I hope every flower you see today reminds you that you deserve a world full of beautiful things.',
-  'To my favorite person: may this year bring you closer to every little happiness your heart is waiting for.'
-];
-let wishIndex = -1;
-function showWish() {
-  const next = Math.floor(Math.random() * birthdayWishes.length);
-  wishIndex = birthdayWishes.length > 1 && next === wishIndex ? (next + 1) % birthdayWishes.length : next;
-  $('#wish-text').textContent = `“${birthdayWishes[wishIndex]}”`;
-  $('#wish-card').hidden = false;
-  $('#wish-capsule').hidden = true;
-}
-$('#wish-capsule').addEventListener('click', showWish);
-$('#another-wish').addEventListener('click', showWish);
+// AI-powered wish, heart, capsule, and cat interactions are initialized in ai.js.
 
-$('#secret-heart').addEventListener('click', () => { $('#secret-message').hidden = false; $('#secret-heart').classList.add('opened'); });
 function launchFireworks() {
   const colors = ['#ffe09a', '#ff9cc4', '#fff0d0', '#dba2ff'];
   for (let i = 0; i < 44; i++) {

@@ -16,5 +16,7 @@ const SITE_CONFIG = {
     "images/photo-13.jpg", "images/photo-14.jpg", "images/photo-15.jpg"
   ],
   SLIDE_DURATION: 4000,
-  MUSIC_FILE: "music/our-song.mp3"
+  MUSIC_FILE: "music/our-song.mp3",
+  // Paste your deployed Cloudflare Worker URL here after setup, e.g. https://nisa-wishes.your-name.workers.dev
+  AI_ENDPOINT: ""
 };

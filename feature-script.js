@@ -17,8 +17,7 @@ voiceButton.addEventListener('click', async () => {
 });
 voiceNote.addEventListener('ended', () => { voiceButton.textContent = '▶'; });
 
-// Birthday time capsule.
-$('#open-capsule').addEventListener('click', () => { $('#open-capsule').hidden = true; $('#capsule-letter').hidden = false; });
+// AI-powered time capsule is initialized in ai.js.
 
 // Tiny quiz with a playful ending.
 const quizItems = [
@@ -37,5 +36,4 @@ function renderQuiz() {
 }
 renderQuiz();
 
-// An easter egg for the little cat peeking from the corner.
-$('#cat-secret').addEventListener('click', () => { const message = document.createElement('p'); message.className = 'floating-note'; message.textContent = 'The cat says: Meherab loves his Cute Billi very, very much. 😽'; message.style.left = '12vw'; message.style.top = '68vh'; document.body.appendChild(message); setTimeout(() => message.remove(), 10000); });
+// AI-powered cat easter egg is initialized in ai.js.

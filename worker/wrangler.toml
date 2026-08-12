@@ -1,0 +1,7 @@
+name = "cute-billi-ai-wishes"
+main = "src/index.js"
+compatibility_date = "2026-08-13"
+
+# Do NOT put GROQ_API_KEY here. Add it as a Cloudflare Worker secret.
+# After GitHub Pages is live, set ALLOWED_ORIGIN as a Worker secret too,
+# for example: https://meherabmehu.github.io
