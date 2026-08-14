@@ -25,12 +25,13 @@ function startBirthdayCelebration() {
   const pieces = ['🌸', '🌹', '💖', '💕', '💗', '✨', '🎀', '🌺', '🎉', '🎊', '🩷'];
   shower.innerHTML = '';
   // Enough joy to feel festive, but deliberately limited so phones stay smooth.
-  for (let i = 0; i < 16; i++) {
+  // Large foreground flowers and hearts add a visible celebratory layer over the floral frame.
+  for (let i = 0; i < 42; i++) {
     const piece = document.createElement('span');
     piece.className = 'celebration-piece';
     piece.textContent = pieces[Math.floor(Math.random() * pieces.length)];
     piece.style.setProperty('--left', `${Math.random() * 100}vw`);
-    piece.style.setProperty('--size', `${16 + Math.random() * 25}px`);
+    piece.style.setProperty('--size', `${23 + Math.random() * 31}px`);
     // Negative delays mean the celebration is already alive the instant the card appears.
     piece.style.setProperty('--delay', `${-Math.random() * 7}s`);
     piece.style.setProperty('--duration', `${4.8 + Math.random() * 3.8}s`);
