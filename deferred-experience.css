@@ -1,0 +1,3 @@
+/* The birthday congratulations screen is the only active scene until its button is pressed. */
+#experience.waiting-to-open > :not(.birthday-celebration),#experience.waiting-to-open > :not(.birthday-celebration) *{animation-play-state:paused!important}
+#experience.waiting-to-open .birthday-celebration,#experience.waiting-to-open .birthday-celebration *{animation-play-state:running!important}

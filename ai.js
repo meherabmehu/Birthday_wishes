@@ -66,4 +66,7 @@ async function aiFloat() {
   note.textContent = await getAiMessage('floating'); document.body.appendChild(note);
   setTimeout(() => note.remove(), 10500);
 }
-setTimeout(aiFloat, 7000); setInterval(aiFloat, 18000);
+document.addEventListener('main-experience-started', () => {
+  setTimeout(aiFloat, 7000);
+  setInterval(aiFloat, 18000);
+});

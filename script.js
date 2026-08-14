@@ -23,7 +23,8 @@ function startBirthdayCelebration() {
   const shower = $('#celebration-shower');
   const pieces = ['🌸', '🌹', '💖', '💕', '💗', '✨', '🎀', '🌺', '🎉', '🎊', '🩷'];
   shower.innerHTML = '';
-  for (let i = 0; i < 135; i++) {
+  // Enough joy to feel festive, but deliberately limited so phones stay smooth.
+  for (let i = 0; i < 55; i++) {
     const piece = document.createElement('span');
     piece.className = 'celebration-piece';
     piece.textContent = pieces[Math.floor(Math.random() * pieces.length)];
@@ -41,7 +42,7 @@ function startBirthdayCelebration() {
 function unlockSurprise() {
   if (passcode.value.trim().toLowerCase() === SITE_CONFIG.SECRET_CODE.trim().toLowerCase()) {
     lockScreen.classList.add('leaving');
-    setTimeout(() => { lockScreen.hidden = true; experience.hidden = false; window.scrollTo(0, 0); startBirthdayCelebration(); }, 700);
+    setTimeout(() => { lockScreen.hidden = true; experience.hidden = false; experience.classList.add('waiting-to-open'); window.scrollTo(0, 0); startBirthdayCelebration(); }, 700);
   } else {
     codeMessage.textContent = 'Hmm… this little world opens only for Nisa. Try again, Cute Billi 😽';
     passcode.classList.remove('shake'); void passcode.offsetWidth; passcode.classList.add('shake');
@@ -53,6 +54,8 @@ passcode.addEventListener('keydown', (event) => { if (event.key === 'Enter') unl
 $('#enter-surprise').addEventListener('click', () => {
   const celebration = $('#birthday-celebration');
   celebration.classList.add('leaving');
+  experience.classList.remove('waiting-to-open');
+  startMainExperience();
   setTimeout(() => { celebration.hidden = true; $('#celebration-shower').innerHTML = ''; }, 800);
 });
 
@@ -85,8 +88,7 @@ function changeAtmosphere() {
   atmospherePhoto++;
   activeAtmosphereLayer = (activeAtmosphereLayer + 1) % atmosphereLayers.length;
 }
-changeAtmosphere();
-if (photos.length) setInterval(changeAtmosphere, 7000);
+// Started only after the birthday congratulations card is opened.
 
 // Cute Billi's tiny animated companions: a cat dashes across at unexpected moments.
 function sendCatRunning() {
@@ -98,8 +100,7 @@ function sendCatRunning() {
   document.body.appendChild(cat);
   setTimeout(() => cat.remove(), 14000);
 }
-setTimeout(sendCatRunning, 2800);
-setInterval(sendCatRunning, 15000);
+// Cat activity begins only inside the opened birthday world.
 
 // Gentle floating romance details, kept sparse so the page stays elegant.
 function releaseSpark() {
@@ -114,7 +115,7 @@ function releaseSpark() {
   document.body.appendChild(spark);
   setTimeout(() => spark.remove(), 9500);
 }
-setInterval(releaseSpark, 2600);
+// Sparkles are started by startMainExperience().
 
 // Little love notes and birthday wishes float through the page at gentle intervals.
 const floatingNotes = [
@@ -137,8 +138,7 @@ function floatLoveNote() {
   document.body.appendChild(note);
   setTimeout(() => note.remove(), 11000);
 }
-setTimeout(floatLoveNote, 1800);
-setInterval(floatLoveNote, 6100);
+// Floating notes are started by startMainExperience().
 
 // A live countdown makes the page feel special before the birthday and changes to a celebration on 20 August.
 function updateCountdown() {
@@ -154,7 +154,21 @@ function updateCountdown() {
   $('#count-minutes').textContent = String(minutes).padStart(2, '0');
   if (now.getMonth() === 7 && now.getDate() === 20) $('#countdown-label').textContent = 'Today is your beautiful day ✦';
 }
-updateCountdown(); setInterval(updateCountdown, 30000);
+let mainExperienceStarted = false;
+function startMainExperience() {
+  if (mainExperienceStarted) return;
+  mainExperienceStarted = true;
+  changeAtmosphere();
+  if (photos.length) setInterval(changeAtmosphere, 7000);
+  setTimeout(sendCatRunning, 1800);
+  setInterval(sendCatRunning, 15000);
+  setInterval(releaseSpark, 3000);
+  setTimeout(floatLoveNote, 1400);
+  setInterval(floatLoveNote, 7000);
+  updateCountdown();
+  setInterval(updateCountdown, 30000);
+  document.dispatchEvent(new Event('main-experience-started'));
+}
 
 // AI-powered wish, heart, capsule, and cat interactions are initialized in ai.js.
 
