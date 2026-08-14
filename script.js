@@ -93,12 +93,12 @@ setInterval(releaseSpark, 2600);
 
 // Little love notes and birthday wishes float through the page at gentle intervals.
 const floatingNotes = [
-  'Cute Billi, you are my favorite feeling. ♡',
+  'Nisa, you are my favorite feeling. ♡',
   'Happy Birthday to my future wife, InshaAllah. ✦',
-  'You make my ordinary days feel beautiful.',
+  'Zannatul, you make my ordinary days feel beautiful.',
   'May every dream in your heart find its way to you.',
   'You are loved—today, tomorrow, always.',
-  'Nisa, you deserve a lifetime full of soft happiness.',
+  'Cute Billi, you deserve a lifetime of soft happiness.',
   'Three years, countless feelings, one favorite person.',
   'May Allah keep your smile bright and your heart peaceful.'
 ];

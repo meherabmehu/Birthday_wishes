@@ -3,11 +3,11 @@
   Before deployment, set SITE_CONFIG.AI_ENDPOINT in config.js.
 */
 const aiFallback = {
-  wish: ['আজকের প্রতিটি ফুল তোমাকে মনে করিয়ে দিক—তুমি ভীষণ ভালোবাসার যোগ্য, আমার Cute Billi। 🤍', 'তোমার হাসি যেন আজকের আকাশের মতোই উজ্জ্বল থাকে। শুভ জন্মদিন, Nisa। ✦'],
-  heart: ['আমার সবচেয়ে শান্তির জায়গা—তুমি।', 'তোমার জন্য আমার দোয়া কখনও ছোট হবে না।'],
-  capsule: ['ভবিষ্যতের Nisa, যদি কখনও মন খারাপ হয়, জেনো—Meherab সবসময় তোমার হাসির জন্য দোয়া করে।', 'যে দিনই আসুক, তুমি আমার কাছে ভীষণ special ছিলে, আছো, থাকবে।'],
-  cat: ['বিড়ালটা বলছে: Cute Billi-কে Meherab খুব খুব ভালোবাসে। 😽', 'বিড়ালের secret: Nisa হাসলে Meherab-এর পৃথিবী সুন্দর লাগে।'],
-  floating: ['তুমি আমার favourite kind of peace. ♡', 'শুভ জন্মদিন, আমার future wife। InshaAllah. ✦']
+  wish: ['Nisa, may every beautiful thing find its way to you this year.', 'Cute Billi, your smile is one of my favorite reasons to be grateful.'],
+  heart: ['Zannatul, you are the calm my heart always comes home to.', 'My love, I will keep praying for your peace and happiness.'],
+  capsule: ['Future Nisa, please remember that Meherab was always cheering for your brightest dreams.', 'My future wife, no matter the season, you will always be deeply precious to me.'],
+  cat: ['The cat says Meherab loves his Nisa more than all the stars it can chase.', 'A tiny secret from the cat: Cute Billi makes Meherab’s whole world softer.'],
+  floating: ['You are my favorite kind of peace, Nisa.', 'Happy Birthday, my future wife. InshaAllah.']
 };
 const aiMemory = new Map();
 let fallbackAt = 0;
