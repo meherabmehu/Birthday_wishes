@@ -1,0 +1,9 @@
+/* Elegant birthday side panels fill the space around portrait photographs. */
+#photo-atmosphere{background:linear-gradient(135deg,#250a24,#5b1e4d 50%,#230923)}
+#photo-atmosphere::before,#photo-atmosphere::after{position:absolute;z-index:0;top:0;bottom:0;width:22vw;min-width:115px;display:flex;align-items:center;justify-content:center;overflow:hidden;color:rgba(255,235,215,.8);font:600 clamp(.55rem,.8vw,.78rem) 'DM Sans',sans-serif;letter-spacing:.26em;text-transform:uppercase;writing-mode:vertical-rl;text-orientation:mixed;text-shadow:0 2px 12px #1b061b;background:radial-gradient(circle at 45% 20%,rgba(248,194,117,.38) 0 2px,transparent 3px),radial-gradient(circle at 65% 50%,rgba(255,202,221,.3) 0 1px,transparent 2px),linear-gradient(180deg,rgba(45,12,43,.94),rgba(139,50,99,.66),rgba(33,8,34,.94));background-size:54px 54px,36px 36px,auto;animation:sideShimmer 9s ease-in-out infinite alternate;box-shadow:inset -1px 0 rgba(255,229,199,.2)}
+#photo-atmosphere::before{content:'Happy Birthday · Cute Billi · Happy Birthday';left:0}
+#photo-atmosphere::after{content:'20 August · Made With Love · Nisa';right:0;box-shadow:inset 1px 0 rgba(255,229,199,.2);animation-delay:-4s}
+@keyframes sideShimmer{to{filter:brightness(1.18) saturate(1.13);background-position:30px 70px,-25px 40px,center}}
+/* Keep the memories gentle, identifiable, and never over-blurred. */
+.photo-layer{filter:blur(.8px) brightness(.84)}
+@media(max-width:700px){#photo-atmosphere::before,#photo-atmosphere::after{display:none}.photo-layer{filter:blur(.65px) brightness(.8)}}
