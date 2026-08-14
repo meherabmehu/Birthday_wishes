@@ -29,12 +29,17 @@ export default {
         headers: { 'Authorization': `Bearer ${env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ model: env.GROQ_MODEL || 'llama-3.3-70b-versatile', messages: [{ role: 'system', content: 'You write elegant, concise Bangla romantic birthday messages.' }, { role: 'user', content: prompt }], temperature: 1.05, max_tokens: 110 })
       });
-      if (!groq.ok) throw new Error(`Groq error ${groq.status}`);
+      if (!groq.ok) {
+        const detail = (await groq.text()).slice(0, 500);
+        console.error('Groq upstream error:', groq.status, detail);
+        throw new Error(`Groq error ${groq.status}`);
+      }
       const data = await groq.json();
       const message = data.choices?.[0]?.message?.content?.trim();
       if (!message) throw new Error('No generated message');
       return new Response(JSON.stringify({ message }), { headers });
     } catch (error) {
+      console.error('Cute Billi AI Worker error:', error?.message || error);
       return new Response(JSON.stringify({ error: 'Could not generate a message right now.' }), { status: 500, headers });
     }
   }
