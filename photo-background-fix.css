@@ -1,0 +1,8 @@
+/* Make the moving photo atmosphere clearly visible through every chapter. */
+.photo-layer{filter:blur(7px) saturate(.9) brightness(.8);transform:scale(1.08)}
+.photo-layer:after{background:linear-gradient(135deg,rgba(21,5,19,.52),rgba(79,21,61,.38),rgba(18,5,19,.58))}
+.photo-layer.visible{opacity:.62}
+.hero{background:radial-gradient(ellipse at 50% 38%,rgba(100,37,78,.52) 0%,rgba(53,19,47,.55) 43%,rgba(24,9,25,.66) 100%)!important}
+.proposal{background:radial-gradient(circle at 50% 45%,rgba(92,32,76,.58),rgba(33,12,33,.6) 52%,rgba(16,5,15,.68))!important}
+.years{background:rgba(39,16,39,.65)!important}.capsule-section{background:radial-gradient(circle at 50% 20%,rgba(117,65,104,.45),rgba(40,14,43,.6) 55%,rgba(26,9,29,.66))!important}.constellation{background:radial-gradient(circle at 25% 40%,rgba(76,28,82,.47),transparent 40%),rgba(22,10,27,.64)!important}.gift-section{background:radial-gradient(circle at 50% 34%,rgba(106,41,88,.47),rgba(41,16,40,.62) 56%,rgba(20,7,21,.68))!important}.cake-section{background:radial-gradient(circle at 50% 30%,rgba(126,52,93,.46),rgba(42,13,40,.62) 63%,rgba(21,6,23,.67))!important}.time-section{background:radial-gradient(circle at 50% 30%,rgba(73,52,97,.45),rgba(29,16,41,.62) 67%)!important}.quiz-section{background:linear-gradient(145deg,rgba(60,20,56,.62),rgba(28,11,33,.67))!important}.stars-section{background:radial-gradient(circle,rgba(72,35,78,.48),rgba(18,7,19,.68) 72%)!important}.letter-section,.voice-section{background:rgba(246,222,214,.91)!important}
+@media(max-width:620px){.photo-layer.visible{opacity:.5}.photo-layer{filter:blur(5px) saturate(.88) brightness(.76)}}
