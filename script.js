@@ -47,16 +47,21 @@ const photos = SITE_CONFIG.PHOTOS || [];
 
 const atmosphereLayers = [...document.querySelectorAll('.photo-layer')];
 let atmospherePhoto = 0;
+let activeAtmosphereLayer = 0;
 function changeAtmosphere() {
   if (!photos.length) return;
-  const layer = atmosphereLayers[atmospherePhoto % atmosphereLayers.length];
-  atmosphereLayers.forEach((item) => item.classList.remove('visible'));
-  layer.style.backgroundImage = `url("${photos[atmospherePhoto % photos.length]}")`;
-  requestAnimationFrame(() => layer.classList.add('visible'));
+  // Two layers overlap: the next photo fades in above the previous one, so no flash/flicker occurs.
+  const nextLayer = atmosphereLayers[activeAtmosphereLayer];
+  const previousLayer = atmosphereLayers[(activeAtmosphereLayer + 1) % atmosphereLayers.length];
+  nextLayer.style.backgroundImage = `url("${photos[atmospherePhoto % photos.length]}")`;
+  nextLayer.style.zIndex = '2'; previousLayer.style.zIndex = '1';
+  requestAnimationFrame(() => nextLayer.classList.add('visible'));
+  setTimeout(() => previousLayer.classList.remove('visible'), 1800);
   atmospherePhoto++;
+  activeAtmosphereLayer = (activeAtmosphereLayer + 1) % atmosphereLayers.length;
 }
 changeAtmosphere();
-if (photos.length) setInterval(changeAtmosphere, 6500);
+if (photos.length) setInterval(changeAtmosphere, 7000);
 
 // Cute Billi's tiny animated companions: a cat dashes across at unexpected moments.
 function sendCatRunning() {
