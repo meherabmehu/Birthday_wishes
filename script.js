@@ -21,16 +21,17 @@ createPetals();
 
 function startBirthdayCelebration() {
   const shower = $('#celebration-shower');
-  const pieces = ['🌸', '🌹', '💖', '💕', '💗', '✨', '🎀', '🌺'];
+  const pieces = ['🌸', '🌹', '💖', '💕', '💗', '✨', '🎀', '🌺', '🎉', '🎊', '🩷'];
   shower.innerHTML = '';
-  for (let i = 0; i < 95; i++) {
+  for (let i = 0; i < 135; i++) {
     const piece = document.createElement('span');
     piece.className = 'celebration-piece';
     piece.textContent = pieces[Math.floor(Math.random() * pieces.length)];
     piece.style.setProperty('--left', `${Math.random() * 100}vw`);
     piece.style.setProperty('--size', `${16 + Math.random() * 25}px`);
-    piece.style.setProperty('--delay', `${Math.random() * 1.8}s`);
-    piece.style.setProperty('--duration', `${4.2 + Math.random() * 3.3}s`);
+    // Negative delays mean the celebration is already alive the instant the card appears.
+    piece.style.setProperty('--delay', `${-Math.random() * 7}s`);
+    piece.style.setProperty('--duration', `${4.8 + Math.random() * 3.8}s`);
     piece.style.setProperty('--drift', `${-90 + Math.random() * 180}px`);
     piece.style.setProperty('--turn', `${-260 + Math.random() * 520}deg`);
     shower.appendChild(piece);
