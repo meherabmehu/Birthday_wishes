@@ -1,0 +1,8 @@
+/* Clear photo mode: real photos are the actual visible background, not a hidden texture. */
+#photo-atmosphere{background:#160918}.photo-layer{inset:0;filter:none;transform:scale(1.015);background-size:cover;background-position:center;transition:opacity 1.6s ease}.photo-layer:after{background:linear-gradient(120deg,rgba(15,3,14,.12),rgba(28,6,25,.06),rgba(10,2,10,.16))}.photo-layer.visible{opacity:1;animation:clearPhotoDrift 12s ease-in-out infinite alternate}@keyframes clearPhotoDrift{to{transform:scale(1.065) translate(-.6%,-.4%)}}
+/* Let the full-screen photos show through all story chapters. */
+#experience>.hero,#experience>.proposal,#experience>.section,.letter-section,.voice-section,.years,.capsule-section,.constellation,.gift-section,.cake-section,.time-section,.quiz-section,.stars-section{background:transparent!important}
+/* Readability is handled by the content cards, not by hiding the photos. */
+.hero-content,.proposal-content{padding:38px 25px;border-radius:28px;background:linear-gradient(135deg,rgba(31,5,28,.46),rgba(31,5,28,.18));backdrop-filter:blur(2px);text-shadow:0 2px 15px #160616}.hero-content .hero-copy,.proposal-content p{color:#fff3f7;text-shadow:0 2px 13px #140411}.section-heading h2,.section-heading .eyebrow,.center-copy,.forever-line{filter:drop-shadow(0 2px 10px #140411)}.timeline,.quote-grid,.quiz-card,.time-capsule article,.gift-reveal,.wish-card{backdrop-filter:blur(8px);background-color:rgba(27,6,25,.6)}
+.letter-card,.voice-card{box-shadow:0 22px 60px rgba(16,3,14,.48)}
+@media(max-width:620px){.photo-layer{background-position:center center}.hero-content,.proposal-content{padding:30px 16px;background:linear-gradient(135deg,rgba(31,5,28,.52),rgba(31,5,28,.22))}}
