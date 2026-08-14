@@ -1,19 +1,18 @@
 /*
   PERSONAL SETTINGS
   1) Change SECRET_CODE to your own private word.
-  2) The 15 photo placeholders are already in the images folder.
-     Replace photo-01.jpg, photo-02.jpg etc. with your own photos using the SAME filenames.
+  2) Your 14 photos are named 1.jpg through 14.jpg inside the images folder.
+     They automatically cross-fade as the whole website's cinematic background.
   3) To enable the music button, put your own MP3 in music/ and name it: our-song.mp3
   4) For Meherab's personal voice-note card, add a recording as: music/voice-note.mp3
 */
 const SITE_CONFIG = {
-  SECRET_CODE: "meherab",
+  SECRET_CODE: "cute-billi",
   PHOTOS: [
-    "images/photo-01.jpg", "images/photo-02.jpg", "images/photo-03.jpg",
-    "images/photo-04.jpg", "images/photo-05.jpg", "images/photo-06.jpg",
-    "images/photo-07.jpg", "images/photo-08.jpg", "images/photo-09.jpg",
-    "images/photo-10.jpg", "images/photo-11.jpg", "images/photo-12.jpg",
-    "images/photo-13.jpg", "images/photo-14.jpg", "images/photo-15.jpg"
+    "images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg",
+    "images/5.jpg", "images/6.jpg", "images/7.jpg", "images/8.jpg",
+    "images/9.jpg", "images/10.jpg", "images/11.jpg", "images/12.jpg",
+    "images/13.jpg", "images/14.jpg"
   ],
   SLIDE_DURATION: 4000,
   MUSIC_FILE: "music/our-song.mp3",
