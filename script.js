@@ -19,10 +19,28 @@ function createPetals(amount = 30) {
 }
 createPetals();
 
+function startBirthdayCelebration() {
+  const shower = $('#celebration-shower');
+  const pieces = ['🌸', '🌹', '💖', '💕', '💗', '✨', '🎀', '🌺'];
+  shower.innerHTML = '';
+  for (let i = 0; i < 95; i++) {
+    const piece = document.createElement('span');
+    piece.className = 'celebration-piece';
+    piece.textContent = pieces[Math.floor(Math.random() * pieces.length)];
+    piece.style.setProperty('--left', `${Math.random() * 100}vw`);
+    piece.style.setProperty('--size', `${16 + Math.random() * 25}px`);
+    piece.style.setProperty('--delay', `${Math.random() * 1.8}s`);
+    piece.style.setProperty('--duration', `${4.2 + Math.random() * 3.3}s`);
+    piece.style.setProperty('--drift', `${-90 + Math.random() * 180}px`);
+    piece.style.setProperty('--turn', `${-260 + Math.random() * 520}deg`);
+    shower.appendChild(piece);
+  }
+}
+
 function unlockSurprise() {
   if (passcode.value.trim().toLowerCase() === SITE_CONFIG.SECRET_CODE.trim().toLowerCase()) {
     lockScreen.classList.add('leaving');
-    setTimeout(() => { lockScreen.hidden = true; experience.hidden = false; window.scrollTo(0, 0); }, 700);
+    setTimeout(() => { lockScreen.hidden = true; experience.hidden = false; window.scrollTo(0, 0); startBirthdayCelebration(); }, 700);
   } else {
     codeMessage.textContent = 'Hmm… this little world opens only for Nisa. Try again, Cute Billi 😽';
     passcode.classList.remove('shake'); void passcode.offsetWidth; passcode.classList.add('shake');
@@ -30,6 +48,12 @@ function unlockSurprise() {
 }
 unlock.addEventListener('click', unlockSurprise);
 passcode.addEventListener('keydown', (event) => { if (event.key === 'Enter') unlockSurprise(); });
+
+$('#enter-surprise').addEventListener('click', () => {
+  const celebration = $('#birthday-celebration');
+  celebration.classList.add('leaving');
+  setTimeout(() => { celebration.hidden = true; $('#celebration-shower').innerHTML = ''; }, 800);
+});
 
 // The letter stays private until she intentionally opens it.
 $('#open-letter').addEventListener('click', (event) => {
