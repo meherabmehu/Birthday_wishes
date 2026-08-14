@@ -20,11 +20,12 @@ function createPetals(amount = 30) {
 createPetals();
 
 function startBirthdayCelebration() {
+  startCelebrationCanvas();
   const shower = $('#celebration-shower');
   const pieces = ['🌸', '🌹', '💖', '💕', '💗', '✨', '🎀', '🌺', '🎉', '🎊', '🩷'];
   shower.innerHTML = '';
   // Enough joy to feel festive, but deliberately limited so phones stay smooth.
-  for (let i = 0; i < 55; i++) {
+  for (let i = 0; i < 16; i++) {
     const piece = document.createElement('span');
     piece.className = 'celebration-piece';
     piece.textContent = pieces[Math.floor(Math.random() * pieces.length)];
@@ -56,7 +57,7 @@ $('#enter-surprise').addEventListener('click', () => {
   celebration.classList.add('leaving');
   experience.classList.remove('waiting-to-open');
   startMainExperience();
-  setTimeout(() => { celebration.hidden = true; $('#celebration-shower').innerHTML = ''; }, 800);
+  setTimeout(() => { celebration.hidden = true; $('#celebration-shower').innerHTML = ''; stopCelebrationCanvas(); }, 800);
 });
 
 // The letter stays private until she intentionally opens it.
