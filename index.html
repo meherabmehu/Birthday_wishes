@@ -54,7 +54,6 @@
       <div id="youtube-music-player" aria-hidden="true"></div>
       <button id="music-toggle" class="music-toggle" aria-label="Play background music"><span id="music-icon">♫</span><span id="music-label">Play a Little Surprise ♫</span></button>
       <button id="music-restart" class="music-restart" aria-label="Restart the song" title="Restart the song" hidden>↺</button>
-      <button id="lock-again" class="lock-again" aria-label="Start this surprise from the beginning" title="Start from the beginning">Start over</button>
       <section class="screen hero">
         <div class="hero-glow"></div>
         <div class="hero-content">
@@ -133,22 +132,6 @@
       </section>
     </div>
   </main>
-  <script>
-    /* Run before the main app: a browser refresh must never replay the lock or birthday card. */
-    (function () {
-      try {
-        var nav = performance.getEntriesByType('navigation')[0];
-        var resume = nav && nav.type === 'reload' || localStorage.getItem('nisaBirthdayUnlocked') === 'yes' || sessionStorage.getItem('nisaBirthdayUnlocked') === 'yes' || new URLSearchParams(location.search).get('opened') === '1';
-        if (!resume) return;
-        document.getElementById('lock-screen').hidden = true;
-        document.getElementById('experience').hidden = false;
-        document.getElementById('birthday-celebration').hidden = true;
-        document.body.classList.remove('celebration-lock');
-        document.body.style.overflow = 'auto';
-        document.documentElement.style.overflowY = 'auto';
-      } catch (e) {}
-    }());
-  </script>
   <script src="config.js"></script><script src="celebration-canvas.js"></script><script src="script.js"></script><script src="feature-script.js"></script><script src="cat-companion.js"></script><script src="ai.js"></script>
 </body>
 </html>
