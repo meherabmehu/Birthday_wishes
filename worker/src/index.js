@@ -27,7 +27,7 @@ export default {
       const groq = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: env.GROQ_MODEL || 'llama-3.3-70b-versatile', messages: [{ role: 'system', content: 'You write elegant, concise English romantic birthday messages. You vary names naturally and never write Bangla or Banglish.' }, { role: 'user', content: prompt }], temperature: 1.05, max_tokens: 110 })
+        body: JSON.stringify({ model: env.GROQ_MODEL || 'openai/gpt-oss-20b', messages: [{ role: 'system', content: 'You write elegant, concise English romantic birthday messages. You vary names naturally and never write Bangla or Banglish.' }, { role: 'user', content: prompt }], temperature: 1.05, max_tokens: 110 })
       });
       if (!groq.ok) {
         const detail = (await groq.text()).slice(0, 500);

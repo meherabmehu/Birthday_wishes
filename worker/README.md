@@ -1,5 +1,7 @@
 # Secure Groq AI Worker setup (Cloudflare free tier)
 
+> The worker uses `openai/gpt-oss-20b` by default. Groq retired the previous Llama 3.3 default in August 2026, so deploy the latest worker files after pulling updates.
+
 This Worker keeps the Groq key out of the birthday website source code.
 
 ## 1. Create a Groq key
