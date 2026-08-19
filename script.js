@@ -44,6 +44,7 @@ function startBirthdayCelebration() {
 
 function unlockSurprise() {
   if (passcode.value.trim().toLowerCase() === SITE_CONFIG.SECRET_CODE.trim().toLowerCase()) {
+    localStorage.setItem('nisaBirthdayUnlocked', 'yes');
     lockScreen.classList.add('leaving');
     setTimeout(() => { lockScreen.hidden = true; experience.hidden = false; experience.classList.add('waiting-to-open'); window.scrollTo(0, 0); startBirthdayCelebration(); }, 700);
   } else {
@@ -248,3 +249,19 @@ $('#gift-box').addEventListener('click', () => {
   box.classList.add('opened');
   setTimeout(() => { $('#gift-reveal').hidden = false; }, 680);
 });
+
+// Keep the surprise unlocked after refresh, until Meherab manually locks it again.
+function restoreUnlockedBirthdayWorld() {
+  if (localStorage.getItem('nisaBirthdayUnlocked') !== 'yes') return;
+  lockScreen.hidden = true;
+  experience.hidden = false;
+  $('#birthday-celebration').hidden = true;
+  window.scrollTo(0, 0);
+  startMainExperience();
+}
+$('#lock-again').addEventListener('click', () => {
+  localStorage.removeItem('nisaBirthdayUnlocked');
+  if (youtubeReady && youtubePlayer) youtubePlayer.pauseVideo();
+  window.location.reload();
+});
+restoreUnlockedBirthdayWorld();
