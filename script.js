@@ -5,6 +5,14 @@ const experience = $('#experience');
 const passcode = $('#passcode');
 const codeMessage = $('#code-message');
 const unlock = $('#unlock');
+const UNLOCK_KEY = 'nisaBirthdayUnlocked';
+const SCROLL_KEY = 'nisaBirthdayScrollPosition';
+let scrollSaveTimer;
+window.addEventListener('scroll', () => {
+  clearTimeout(scrollSaveTimer);
+  scrollSaveTimer = setTimeout(() => sessionStorage.setItem(SCROLL_KEY, String(window.scrollY)), 120);
+}, { passive: true });
+window.addEventListener('pagehide', () => sessionStorage.setItem(SCROLL_KEY, String(window.scrollY)));
 
 function createPetals(amount = 30) {
   const holder = $('#petals');
@@ -44,7 +52,8 @@ function startBirthdayCelebration() {
 
 function unlockSurprise() {
   if (passcode.value.trim().toLowerCase() === SITE_CONFIG.SECRET_CODE.trim().toLowerCase()) {
-    localStorage.setItem('nisaBirthdayUnlocked', 'yes');
+    localStorage.setItem(UNLOCK_KEY, 'yes');
+    sessionStorage.removeItem(SCROLL_KEY);
     lockScreen.classList.add('leaving');
     setTimeout(() => { lockScreen.hidden = true; experience.hidden = false; experience.classList.add('waiting-to-open'); window.scrollTo(0, 0); startBirthdayCelebration(); }, 700);
   } else {
@@ -250,18 +259,22 @@ $('#gift-box').addEventListener('click', () => {
   setTimeout(() => { $('#gift-reveal').hidden = false; }, 680);
 });
 
-// Keep the surprise unlocked after refresh, until Meherab manually locks it again.
+// Keep Nisa in the same part of the birthday world after refresh, until she chooses Start over.
 function restoreUnlockedBirthdayWorld() {
-  if (localStorage.getItem('nisaBirthdayUnlocked') !== 'yes') return;
+  if (localStorage.getItem(UNLOCK_KEY) !== 'yes') return;
   lockScreen.hidden = true;
   experience.hidden = false;
   $('#birthday-celebration').hidden = true;
-  window.scrollTo(0, 0);
   startMainExperience();
+  const savedPosition = Number(sessionStorage.getItem(SCROLL_KEY) || 0);
+  // Wait for the page layout and photos to settle before restoring the exact reading position.
+  requestAnimationFrame(() => setTimeout(() => window.scrollTo({ top: savedPosition, behavior: 'auto' }), 120));
 }
 $('#lock-again').addEventListener('click', () => {
-  localStorage.removeItem('nisaBirthdayUnlocked');
+  localStorage.removeItem(UNLOCK_KEY);
+  sessionStorage.removeItem(SCROLL_KEY);
   if (youtubeReady && youtubePlayer) youtubePlayer.pauseVideo();
+  window.scrollTo(0, 0);
   window.location.reload();
 });
 restoreUnlockedBirthdayWorld();
