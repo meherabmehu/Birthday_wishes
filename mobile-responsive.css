@@ -1,0 +1,16 @@
+/* Mobile-first refinement layer: keeps every chapter readable and touch-friendly. */
+html{-webkit-text-size-adjust:100%}body{min-width:320px}.screen,.section{max-width:100%;overflow-x:clip}button,a,input{touch-action:manipulation}.button,.enter-surprise,.yes,.music-toggle,.music-restart{min-height:44px}
+@media(max-width:768px){
+  .screen{min-height:100svh;padding:28px 18px}.section{padding:74px 18px}.section-heading{margin-bottom:32px}.section-heading h2{font-size:clamp(2.35rem,11vw,3.65rem)}
+  .hero-content{width:100%;padding:25px 13px}.hero-intro{font-size:1.28rem;margin:16px 0 7px}.hero h1{font-size:clamp(3.15rem,15vw,5rem)}.subtitle{font-size:1.55rem;margin:15px}.hero-copy{font-size:.93rem;max-width:330px}.countdown{margin-top:17px}.countdown b{font-size:1.85rem}.countdown-label{margin-bottom:20px}
+  .letter-card{padding:31px 23px;font-size:1.22rem;line-height:1.8}.letter-ending{font-size:1.15rem}.timeline{gap:0}.timeline div{padding:19px 15px}.forever-counter{margin-top:40px}.forever-counter b{font-size:2.35rem}.forever-counter div:last-child b{font-size:1.85rem}.forever-line{font-size:1.22rem}
+  .cake-stage{height:315px}.capsule-wrap{min-height:260px}.wish-card{padding:27px 20px}.wish-card p{font-size:1.65rem}.quote-grid{gap:11px}.quote-grid article{padding:22px;font-size:1.35rem}.time-capsule article{padding:27px 19px}.quiz-card{padding:27px 17px}.quiz-card>p:first-child{font-size:1.65rem}.quiz-options button{min-height:46px}.gift-stage{min-height:385px}.gift-reveal{padding:27px 19px;margin-top:37px}.proposal-content{width:100%;padding:26px 13px}.proposal h2{font-size:clamp(2.9rem,13vw,4.7rem)}.proposal p{font-size:.92rem;margin:23px auto}.proposal-buttons{width:100%}.proposal-buttons .yes{width:100%}
+  .cat-bubble{display:none}.cat-home{left:-10px!important}.cat-walker{bottom:0!important}.floating-note{display:none}.romance-spark:nth-of-type(n+3){display:none}
+  .music-toggle{right:12px!important;bottom:12px!important;width:auto!important;padding:10px 13px!important}.music-toggle #music-label{display:inline!important;font-size:.68rem}.music-restart{right:14px!important;bottom:66px!important}.stars-section{padding-bottom:105px}.forever-caption{padding:0 12px}
+}
+@media(max-width:420px){
+  .lock-card{padding:32px 20px}.lock-card h1{font-size:2.55rem}.lock-card p{font-size:.88rem}.code-row input{padding:13px 11px}.code-row button{width:49px}.eyebrow{font-size:.57rem;letter-spacing:.13em}
+  .hero h1{font-size:3.15rem}.countdown{gap:5px}.countdown div{min-width:51px}.countdown b{font-size:1.65rem}.countdown span{font-size:.5rem}.countdown i{height:19px}.button{font-size:.82rem;padding:12px 16px}
+  .letter-card{font-size:1.12rem;padding:27px 18px}.timeline b{font-size:2.05rem}.timeline span{font-size:.81rem}.forever-counter{margin-top:33px}.forever-counter div{padding:9px 3px}.forever-counter span{font-size:.52rem}.quote-grid article{font-size:1.24rem}.name-line{font-size:2.7rem!important}.forever-heart{font-size:2.5rem!important}.gift-box{transform:scale(.86)}.gift-stage{min-height:340px}.gift-reveal h3{font-size:2.1rem}.capsule-lock{transform:scale(.88)}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
