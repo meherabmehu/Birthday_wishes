@@ -4,7 +4,6 @@
   2) Your 14 photos are named 1.jpg through 14.jpg inside the images folder.
      They automatically cross-fade as the whole website's cinematic background.
   3) To enable the music button, put your own MP3 in music/ and name it: our-song.mp3
-  4) For Meherab's personal voice-note card, add a recording as: music/voice-note.mp3
 */
 const SITE_CONFIG = {
   SECRET_CODE: "cute-billi",

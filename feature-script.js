@@ -8,15 +8,6 @@ cake.addEventListener('click', () => {
   } else { cake.classList.remove('lit'); cakeMessage.textContent = 'May Allah accept every good prayer hidden in your heart. Happy Birthday, Nisa. 🤍'; launchFireworks(); }
 });
 
-// Voice note: just add music/voice-note.mp3 to personalize it with Meherab's own voice.
-const voiceNote = $('#voice-note'); const voiceButton = $('#voice-toggle'); const voiceHint = $('#voice-hint');
-voiceNote.src = 'music/voice-note.mp3';
-voiceButton.addEventListener('click', async () => {
-  if (voiceNote.paused) { try { await voiceNote.play(); voiceButton.textContent = 'Ⅱ'; voiceHint.hidden = true; } catch { voiceHint.hidden = false; } }
-  else { voiceNote.pause(); voiceButton.textContent = '▶'; }
-});
-voiceNote.addEventListener('ended', () => { voiceButton.textContent = '▶'; });
-
 // AI-powered time capsule is initialized in ai.js.
 
 // Tiny quiz with a playful ending.
