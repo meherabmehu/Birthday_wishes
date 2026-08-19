@@ -143,6 +143,9 @@
         document.getElementById('lock-screen').hidden = true;
         document.getElementById('experience').hidden = false;
         document.getElementById('birthday-celebration').hidden = true;
+        document.body.classList.remove('celebration-lock');
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflowY = 'auto';
       } catch (e) {}
     }());
   </script>
