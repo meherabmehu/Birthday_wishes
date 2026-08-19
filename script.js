@@ -6,6 +6,7 @@ const passcode = $('#passcode');
 const codeMessage = $('#code-message');
 const unlock = $('#unlock');
 const UNLOCK_KEY = 'nisaBirthdayUnlocked';
+const GREETING_SEEN_KEY = 'nisaBirthdayGreetingSeen';
 const SCROLL_KEY = 'nisaBirthdayScrollPosition';
 let scrollSaveTimer;
 window.addEventListener('scroll', () => {
@@ -66,6 +67,8 @@ passcode.addEventListener('keydown', (event) => { if (event.key === 'Enter') unl
 
 $('#enter-surprise').addEventListener('click', () => {
   const celebration = $('#birthday-celebration');
+  localStorage.setItem(UNLOCK_KEY, 'yes');
+  localStorage.setItem(GREETING_SEEN_KEY, 'yes');
   celebration.classList.add('leaving');
   document.body.classList.remove('celebration-lock');
   experience.classList.remove('waiting-to-open');
@@ -261,7 +264,9 @@ $('#gift-box').addEventListener('click', () => {
 
 // Keep Nisa in the same part of the birthday world after refresh, until she chooses Start over.
 function restoreUnlockedBirthdayWorld() {
-  if (localStorage.getItem(UNLOCK_KEY) !== 'yes') return;
+  const hasUnlockedBefore = localStorage.getItem(UNLOCK_KEY) === 'yes';
+  const hasAlreadySeenGreeting = localStorage.getItem(GREETING_SEEN_KEY) === 'yes';
+  if (!hasUnlockedBefore && !hasAlreadySeenGreeting) return;
   lockScreen.hidden = true;
   experience.hidden = false;
   $('#birthday-celebration').hidden = true;
@@ -272,6 +277,7 @@ function restoreUnlockedBirthdayWorld() {
 }
 $('#lock-again').addEventListener('click', () => {
   localStorage.removeItem(UNLOCK_KEY);
+  localStorage.removeItem(GREETING_SEEN_KEY);
   sessionStorage.removeItem(SCROLL_KEY);
   if (youtubeReady && youtubePlayer) youtubePlayer.pauseVideo();
   window.scrollTo(0, 0);
