@@ -127,7 +127,7 @@ const floatingNotes = [
   'Happy Birthday to my future wife, InshaAllah. ✦',
   'Zannatul, you make my ordinary days feel beautiful.',
   'May every dream in your heart find its way to you.',
-  'You are loved—today, tomorrow, always.',
+  'You are loved today, tomorrow, always.',
   'Cute Billi, you deserve a lifetime of soft happiness.',
   'Three years, countless feelings, one favorite person.',
   'May Allah keep your smile bright and your heart peaceful.'

@@ -23,7 +23,7 @@ export default {
     try {
       const { type = 'wish', previous = '' } = await request.json();
       const topic = TOPICS[type] || TOPICS.wish;
-      const prompt = `Write exactly one ${topic} in natural, elegant English for Zannatul Ferdoush Nisa. It is from her partner Meherab, who has loved her for three years and hopes to marry her, InshaAllah. Keep it respectful, warm, romantic, fresh, and under 35 words. Vary the way you address her: rotate naturally among Nisa, Cute Billi, Zannatul, my love, and my future wife. Never use the same name in two consecutive messages and do not overuse any one name. Do not use Bangla, Banglish, markdown, quotation marks, or emojis. Avoid repeating this previous message: ${previous || 'none'}.`;
+      const prompt = `Write exactly one ${topic} in natural, elegant English for Zannatul Ferdoush Nisa. It is from her partner Meherab, who has loved her for three years and hopes to marry her, InshaAllah. Keep it respectful, warm, romantic, fresh, and under 35 words. Vary the way you address her: rotate naturally among Nisa, Cute Billi, Zannatul, my love, and my future wife. Never use the same name in two consecutive messages and do not overuse any one name. Do not use Bangla, Banglish, markdown, quotation marks, dashes, or emojis. Avoid repeating this previous message: ${previous || 'none'}.`;
       const groq = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
