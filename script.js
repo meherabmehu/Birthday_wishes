@@ -5,7 +5,6 @@ const experience = $('#experience');
 const passcode = $('#passcode');
 const codeMessage = $('#code-message');
 const unlock = $('#unlock');
-const EXPERIENCE_STATE_KEY = 'nisaBirthdayExperienceState';
 
 function createPetals(amount = 30) {
   const holder = $('#petals');
@@ -57,7 +56,6 @@ passcode.addEventListener('keydown', (event) => { if (event.key === 'Enter') unl
 
 $('#enter-surprise').addEventListener('click', () => {
   const celebration = $('#birthday-celebration');
-  localStorage.setItem(EXPERIENCE_STATE_KEY, 'main');
   celebration.classList.add('leaving');
   document.body.classList.remove('celebration-lock');
   experience.classList.remove('waiting-to-open');
@@ -251,19 +249,3 @@ $('#gift-box').addEventListener('click', () => {
   box.classList.add('opened');
   setTimeout(() => { $('#gift-reveal').hidden = false; }, 680);
 });
-
-// Only after the birthday card is opened once, refreshes go directly to the main site.
-function resumeMainBirthdayWorld() {
-  if (localStorage.getItem(EXPERIENCE_STATE_KEY) !== 'main') return;
-  lockScreen.hidden = true;
-  experience.hidden = false;
-  $('#birthday-celebration').hidden = true;
-  document.body.classList.remove('celebration-lock');
-  startMainExperience();
-}
-$('#start-over').addEventListener('click', () => {
-  localStorage.removeItem(EXPERIENCE_STATE_KEY);
-  if (youtubeReady && youtubePlayer) youtubePlayer.pauseVideo();
-  window.location.assign(window.location.pathname);
-});
-
