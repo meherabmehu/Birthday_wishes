@@ -164,8 +164,6 @@ function startMainExperience() {
   mainExperienceStarted = true;
   changeAtmosphere();
   if (photos.length) setInterval(changeAtmosphere, 7000);
-  setTimeout(sendCatRunning, 1800);
-  setInterval(sendCatRunning, 15000);
   setInterval(releaseSpark, 3000);
   setTimeout(floatLoveNote, 1400);
   setInterval(floatLoveNote, 7000);

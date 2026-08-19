@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="clean-celebration-layout.css" />
   <link rel="stylesheet" href="balloon-welcome.css" />
   <link rel="stylesheet" href="forever-names.css" />
+  <link rel="stylesheet" href="cat-activities.css" />
   <link rel="stylesheet" href="deferred-experience.css" />
 </head>
 <body>
@@ -35,7 +36,11 @@
 
     <div id="experience" hidden>
       <div id="photo-atmosphere" aria-hidden="true"><i class="photo-layer layer-one"></i><i class="photo-layer layer-two"></i></div>
-      <div id="cat-world" aria-hidden="true"><button id="cat-secret" class="cat-actor cat-peek" aria-label="A curious little cat">🐱</button><span class="cat-actor cat-sleep">🐈</span></div>
+      <div id="cat-world" aria-label="Cute cat activities">
+        <div class="cat-scene cat-sleeper-scene" aria-hidden="true"><div class="cat-illustration sleeping-cat"><span class="tail"></span><span class="body"></span><span class="head"><i class="ear left"></i><i class="ear right"></i><i class="eye left"></i><i class="eye right"></i><i class="nose"></i></span><span class="zzz">z z z</span></div></div>
+        <div class="cat-scene cat-groom-scene" aria-hidden="true"><div class="cat-illustration grooming-cat"><span class="tail"></span><span class="body"></span><span class="head"><i class="ear left"></i><i class="ear right"></i><i class="eye left"></i><i class="eye right"></i><i class="nose"></i></span><span class="paw"></span></div></div>
+        <button id="cat-secret" class="cat-scene cat-walk-scene" aria-label="A curious little cat"><span class="cat-illustration walking-cat"><span class="tail"></span><span class="body"></span><span class="head"><i class="ear left"></i><i class="ear right"></i><i class="eye left"></i><i class="eye right"></i><i class="nose"></i></span><i class="leg one"></i><i class="leg two"></i></span></button>
+      </div>
       <section id="birthday-celebration" class="birthday-celebration" aria-label="Birthday celebration">
         <canvas id="celebration-canvas" aria-hidden="true"></canvas>
         <div id="celebration-shower" aria-hidden="true"></div>
