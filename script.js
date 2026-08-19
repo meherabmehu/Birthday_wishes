@@ -54,6 +54,7 @@ function startBirthdayCelebration() {
 function unlockSurprise() {
   if (passcode.value.trim().toLowerCase() === SITE_CONFIG.SECRET_CODE.trim().toLowerCase()) {
     localStorage.setItem(UNLOCK_KEY, 'yes');
+    sessionStorage.setItem(UNLOCK_KEY, 'yes');
     sessionStorage.removeItem(SCROLL_KEY);
     lockScreen.classList.add('leaving');
     setTimeout(() => { lockScreen.hidden = true; experience.hidden = false; experience.classList.add('waiting-to-open'); window.scrollTo(0, 0); startBirthdayCelebration(); }, 700);
@@ -69,6 +70,12 @@ $('#enter-surprise').addEventListener('click', () => {
   const celebration = $('#birthday-celebration');
   localStorage.setItem(UNLOCK_KEY, 'yes');
   localStorage.setItem(GREETING_SEEN_KEY, 'yes');
+  sessionStorage.setItem(UNLOCK_KEY, 'yes');
+  sessionStorage.setItem(GREETING_SEEN_KEY, 'yes');
+  // This URL flag is a final fallback if a mobile browser clears web storage on refresh.
+  const openedUrl = new URL(window.location.href);
+  openedUrl.searchParams.set('opened', '1');
+  history.replaceState({}, '', `${openedUrl.pathname}${openedUrl.search}${openedUrl.hash}`);
   celebration.classList.add('leaving');
   document.body.classList.remove('celebration-lock');
   experience.classList.remove('waiting-to-open');
@@ -264,9 +271,10 @@ $('#gift-box').addEventListener('click', () => {
 
 // Keep Nisa in the same part of the birthday world after refresh, until she chooses Start over.
 function restoreUnlockedBirthdayWorld() {
-  const hasUnlockedBefore = localStorage.getItem(UNLOCK_KEY) === 'yes';
-  const hasAlreadySeenGreeting = localStorage.getItem(GREETING_SEEN_KEY) === 'yes';
-  if (!hasUnlockedBefore && !hasAlreadySeenGreeting) return;
+  const urlSaysOpened = new URLSearchParams(window.location.search).get('opened') === '1';
+  const hasUnlockedBefore = localStorage.getItem(UNLOCK_KEY) === 'yes' || sessionStorage.getItem(UNLOCK_KEY) === 'yes';
+  const hasAlreadySeenGreeting = localStorage.getItem(GREETING_SEEN_KEY) === 'yes' || sessionStorage.getItem(GREETING_SEEN_KEY) === 'yes';
+  if (!urlSaysOpened && !hasUnlockedBefore && !hasAlreadySeenGreeting) return;
   lockScreen.hidden = true;
   experience.hidden = false;
   $('#birthday-celebration').hidden = true;
@@ -278,9 +286,15 @@ function restoreUnlockedBirthdayWorld() {
 $('#lock-again').addEventListener('click', () => {
   localStorage.removeItem(UNLOCK_KEY);
   localStorage.removeItem(GREETING_SEEN_KEY);
+  sessionStorage.removeItem(UNLOCK_KEY);
+  sessionStorage.removeItem(GREETING_SEEN_KEY);
   sessionStorage.removeItem(SCROLL_KEY);
+  const cleanUrl = new URL(window.location.href);
+  cleanUrl.searchParams.delete('opened');
+  history.replaceState({}, '', `${cleanUrl.pathname}${cleanUrl.search}${cleanUrl.hash}`);
   if (youtubeReady && youtubePlayer) youtubePlayer.pauseVideo();
   window.scrollTo(0, 0);
   window.location.reload();
 });
 restoreUnlockedBirthdayWorld();
+window.addEventListener('pageshow', restoreUnlockedBirthdayWorld);
