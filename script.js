@@ -169,7 +169,6 @@ function startMainExperience() {
   setInterval(floatLoveNote, 7000);
   updateCountdown();
   setInterval(updateCountdown, 30000);
-  document.querySelectorAll('.cat-activity-video video').forEach((video) => video.play().catch(() => {}));
   document.dispatchEvent(new Event('main-experience-started'));
 }
 
