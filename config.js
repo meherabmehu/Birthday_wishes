@@ -14,7 +14,10 @@ const SITE_CONFIG = {
     "images/13.jpg", "images/14.jpg"
   ],
   SLIDE_DURATION: 4000,
-  MUSIC_FILE: "music/our-song.mp3",
+  // Add a legally obtained MP3 here. Music control will play/pause it in the website.
+  MUSIC_FILE: "music/aj-jonmodin-tomar.mp3",
+  MUSIC_TITLE: "Play Aj Jonmodin Tomar",
+  OFFICIAL_SONG_URL: "https://www.youtube.com/watch?v=dIXkFnjz0IE",
   // Paste your deployed Cloudflare Worker URL here after setup, e.g. https://nisa-wishes.your-name.workers.dev
   AI_ENDPOINT: "https://cute-billi-ai-wishes.meherab-cute-billi.workers.dev"
 };

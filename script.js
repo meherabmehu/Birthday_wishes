@@ -190,11 +190,12 @@ const music = $('#background-music');
 const musicToggle = $('#music-toggle');
 const musicLabel = $('#music-label');
 music.src = SITE_CONFIG.MUSIC_FILE;
+musicLabel.textContent = SITE_CONFIG.MUSIC_TITLE || 'Play our song';
 musicToggle.addEventListener('click', async () => {
   if (music.paused) {
     try { await music.play(); musicLabel.textContent = 'Pause our song'; musicToggle.setAttribute('aria-label', 'Pause background music'); }
-    catch { musicLabel.textContent = 'Add our-song.mp3 first'; }
-  } else { music.pause(); musicLabel.textContent = 'Play our song'; musicToggle.setAttribute('aria-label', 'Play background music'); }
+    catch { musicLabel.textContent = 'Add aj-jonmodin-tomar.mp3'; }
+  } else { music.pause(); musicLabel.textContent = SITE_CONFIG.MUSIC_TITLE || 'Play our song'; musicToggle.setAttribute('aria-label', 'Play background music'); }
 });
 
 // Smooth section entrances keep the journey premium rather than a static long page.

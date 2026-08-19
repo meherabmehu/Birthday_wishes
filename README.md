@@ -43,4 +43,4 @@ The `images/` folder includes 15 elegant JPEG placeholders named `photo-01.jpg` 
 
 ## Music control
 
-The website includes a visitor-controlled music button. Put an MP3 you are allowed to use in `music/our-song.mp3`; it will then play and pause from the button. The website never tries to autoplay sound.
+The website includes a visitor-controlled music button. Put a legally obtained MP3 of **Aj Jonmodin Tomar** in `music/aj-jonmodin-tomar.mp3`; it will then play and pause from the button. The website never tries to autoplay sound.
