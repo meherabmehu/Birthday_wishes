@@ -169,6 +169,8 @@ function startMainExperience() {
   setInterval(floatLoveNote, 7000);
   updateCountdown();
   setInterval(updateCountdown, 30000);
+  // Preload the official player after the surprise opens, so the music button responds quickly.
+  createYouTubePlayer();
   document.dispatchEvent(new Event('main-experience-started'));
 }
 
@@ -187,10 +189,12 @@ document.querySelectorAll('.yes').forEach((button) => button.addEventListener('c
 
 // Background music comes from the official YouTube upload. It only starts after a deliberate tap.
 const musicToggle = $('#music-toggle');
+const musicRestart = $('#music-restart');
 const musicLabel = $('#music-label');
 let youtubePlayer;
 let youtubeLoading = false;
 let youtubeReady = false;
+let musicPlayRequested = false;
 function setMusicButton(playing) {
   musicLabel.textContent = playing ? 'Pause the Surprise' : (SITE_CONFIG.MUSIC_TITLE || 'Play a Little Surprise ♫');
   musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
@@ -205,16 +209,24 @@ function createYouTubePlayer() {
     youtubePlayer = new YT.Player('youtube-music-player', {
       height: '1', width: '1', videoId: SITE_CONFIG.YOUTUBE_VIDEO_ID,
       playerVars: { autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, loop: 1, playlist: SITE_CONFIG.YOUTUBE_VIDEO_ID },
-      events: { onReady: () => { youtubeReady = true; youtubePlayer.playVideo(); setMusicButton(true); }, onStateChange: (event) => { if (event.data === YT.PlayerState.ENDED) youtubePlayer.playVideo(); } }
+      events: {
+        onReady: () => { youtubeReady = true; if (musicPlayRequested) { youtubePlayer.playVideo(); setMusicButton(true); } },
+        onStateChange: (event) => { if (event.data === YT.PlayerState.ENDED) youtubePlayer.playVideo(); }
+      }
     });
   };
 }
 musicLabel.textContent = SITE_CONFIG.MUSIC_TITLE || 'Play a Little Surprise ♫';
 musicToggle.addEventListener('click', () => {
-  if (!youtubeReady) { musicLabel.textContent = 'Starting your surprise…'; createYouTubePlayer(); return; }
+  if (!youtubeReady) { musicPlayRequested = true; musicLabel.textContent = 'Starting your surprise…'; createYouTubePlayer(); return; }
   const state = youtubePlayer.getPlayerState();
   if (state === YT.PlayerState.PLAYING) { youtubePlayer.pauseVideo(); setMusicButton(false); }
   else { youtubePlayer.playVideo(); setMusicButton(true); }
+});
+musicRestart.addEventListener('click', () => {
+  musicPlayRequested = true;
+  if (!youtubeReady) { musicLabel.textContent = 'Starting your surprise…'; createYouTubePlayer(); return; }
+  youtubePlayer.seekTo(0, true); youtubePlayer.playVideo(); setMusicButton(true);
 });
 
 // Smooth section entrances keep the journey premium rather than a static long page.

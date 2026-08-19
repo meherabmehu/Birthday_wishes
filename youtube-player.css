@@ -1,2 +1,2 @@
-/* The official YouTube player stays invisible; the custom music button controls it. */
-#youtube-music-player{position:fixed;left:-10px;bottom:-10px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
+/* The official YouTube player stays invisible; custom controls play, pause, and restart it. */
+#youtube-music-player{position:fixed;left:-10px;bottom:-10px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}.music-restart{position:fixed;right:18px;bottom:69px;z-index:8;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:#210d21c9;color:var(--gold);font-size:1.25rem;line-height:1;backdrop-filter:blur(12px);box-shadow:0 8px 24px #12051275;transition:.2s}.music-restart:hover{transform:rotate(-45deg) scale(1.08);background:#391631}@media(max-width:620px){.music-restart{right:15px;bottom:63px;width:36px;height:36px}}
