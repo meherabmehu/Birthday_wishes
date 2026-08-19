@@ -282,6 +282,8 @@ function restoreUnlockedBirthdayWorld() {
   lockScreen.hidden = true;
   experience.hidden = false;
   $('#birthday-celebration').hidden = true;
+  // The greeting card normally removes this on its button click. Refresh bypasses that click.
+  document.body.classList.remove('celebration-lock');
   startMainExperience();
   const savedPosition = Number(sessionStorage.getItem(SCROLL_KEY) || 0);
   // Wait for the page layout and photos to settle before restoring the exact reading position.
