@@ -4,8 +4,8 @@ const cakeMessage = $('#cake-message');
 cake.addEventListener('click', () => {
   if (!cake.classList.contains('lit')) {
     cake.classList.add('lit'); cakeMessage.hidden = false;
-    cakeMessage.textContent = 'Close your eyes, Cute Billi. Make one beautiful wish. ✦';
-  } else { cake.classList.remove('lit'); cakeMessage.textContent = 'May Allah accept every good prayer hidden in your heart. Happy Birthday, Nisa. 🤍'; launchFireworks(); }
+    cakeMessage.textContent = 'Close your eyes, Nisa. Make a wish.';
+  } else { cake.classList.remove('lit'); cakeMessage.textContent = 'May Allah make every good wish in your heart come true. Happy Birthday, Nisa. 🤍'; launchFireworks(); }
 });
 
 // AI-powered time capsule is initialized in ai.js.
