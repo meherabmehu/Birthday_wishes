@@ -195,7 +195,10 @@ let youtubePlayer;
 let youtubeLoading = false;
 let youtubeReady = false;
 let musicPlayRequested = false;
+let songHasStarted = false;
 function setMusicButton(playing) {
+  if (playing) songHasStarted = true;
+  musicRestart.hidden = !songHasStarted;
   musicLabel.textContent = playing ? 'Pause the Surprise' : (SITE_CONFIG.MUSIC_TITLE || 'Play a Little Surprise ♫');
   musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
 }
@@ -228,6 +231,8 @@ musicRestart.addEventListener('click', () => {
   if (!youtubeReady) { musicLabel.textContent = 'Starting your surprise…'; createYouTubePlayer(); return; }
   youtubePlayer.seekTo(0, true); youtubePlayer.playVideo(); setMusicButton(true);
 });
+// Load the official player immediately but keep it silent; the first tap can play with minimal delay.
+createYouTubePlayer();
 
 // Smooth section entrances keep the journey premium rather than a static long page.
 const revealSections = document.querySelectorAll('.section');
