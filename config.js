@@ -14,9 +14,9 @@ const SITE_CONFIG = {
     "images/13.jpg", "images/14.jpg"
   ],
   SLIDE_DURATION: 4000,
-  // Add a legally obtained MP3 here. Music control will play/pause it in the website.
-  MUSIC_FILE: "music/aj-jonmodin-tomar.mp3",
+  // The player uses the official YouTube upload—no MP3 download is needed.
   MUSIC_TITLE: "Play a Little Surprise ♫",
+  YOUTUBE_VIDEO_ID: "dIXkFnjz0IE",
   OFFICIAL_SONG_URL: "https://www.youtube.com/watch?v=dIXkFnjz0IE",
   // Paste your deployed Cloudflare Worker URL here after setup, e.g. https://nisa-wishes.your-name.workers.dev
   AI_ENDPOINT: "https://cute-billi-ai-wishes.meherab-cute-billi.workers.dev"

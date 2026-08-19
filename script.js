@@ -185,17 +185,36 @@ function launchFireworks() {
 }
 document.querySelectorAll('.yes').forEach((button) => button.addEventListener('click', () => { $('#yes-message').hidden = false; document.body.classList.add('celebrate'); launchFireworks(); }));
 
-// Background music is opt-in: the visitor controls it and browsers never autoplay it unexpectedly.
-const music = $('#background-music');
+// Background music comes from the official YouTube upload. It only starts after a deliberate tap.
 const musicToggle = $('#music-toggle');
 const musicLabel = $('#music-label');
-music.src = SITE_CONFIG.MUSIC_FILE;
-musicLabel.textContent = SITE_CONFIG.MUSIC_TITLE || 'Play our song';
-musicToggle.addEventListener('click', async () => {
-  if (music.paused) {
-    try { await music.play(); musicLabel.textContent = 'Pause our song'; musicToggle.setAttribute('aria-label', 'Pause background music'); }
-    catch { musicLabel.textContent = 'Add aj-jonmodin-tomar.mp3'; }
-  } else { music.pause(); musicLabel.textContent = SITE_CONFIG.MUSIC_TITLE || 'Play our song'; musicToggle.setAttribute('aria-label', 'Play background music'); }
+let youtubePlayer;
+let youtubeLoading = false;
+let youtubeReady = false;
+function setMusicButton(playing) {
+  musicLabel.textContent = playing ? 'Pause the Surprise' : (SITE_CONFIG.MUSIC_TITLE || 'Play a Little Surprise ♫');
+  musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
+}
+function createYouTubePlayer() {
+  if (youtubeLoading) return;
+  youtubeLoading = true;
+  const api = document.createElement('script');
+  api.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(api);
+  window.onYouTubeIframeAPIReady = () => {
+    youtubePlayer = new YT.Player('youtube-music-player', {
+      height: '1', width: '1', videoId: SITE_CONFIG.YOUTUBE_VIDEO_ID,
+      playerVars: { autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, loop: 1, playlist: SITE_CONFIG.YOUTUBE_VIDEO_ID },
+      events: { onReady: () => { youtubeReady = true; youtubePlayer.playVideo(); setMusicButton(true); }, onStateChange: (event) => { if (event.data === YT.PlayerState.ENDED) youtubePlayer.playVideo(); } }
+    });
+  };
+}
+musicLabel.textContent = SITE_CONFIG.MUSIC_TITLE || 'Play a Little Surprise ♫';
+musicToggle.addEventListener('click', () => {
+  if (!youtubeReady) { musicLabel.textContent = 'Starting your surprise…'; createYouTubePlayer(); return; }
+  const state = youtubePlayer.getPlayerState();
+  if (state === YT.PlayerState.PLAYING) { youtubePlayer.pauseVideo(); setMusicButton(false); }
+  else { youtubePlayer.playVideo(); setMusicButton(true); }
 });
 
 // Smooth section entrances keep the journey premium rather than a static long page.

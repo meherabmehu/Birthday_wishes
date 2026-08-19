@@ -1,0 +1,2 @@
+/* The official YouTube player stays invisible; the custom music button controls it. */
+#youtube-music-player{position:fixed;left:-10px;bottom:-10px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
