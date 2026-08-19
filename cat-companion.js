@@ -20,6 +20,9 @@ function runCatActivity() {
   companionBubble.textContent = activity.bubble;
   companionBubble.classList.add('show');
   setTimeout(() => companionBubble.classList.remove('show'), 3300);
-  setTimeout(() => runCatActivity(), activity.duration);
+  setTimeout(() => {
+    companion.classList.remove('is-active');
+    setTimeout(runCatActivity, 1800 + Math.random() * 2600);
+  }, activity.duration);
 }
 document.addEventListener('main-experience-started', () => setTimeout(runCatActivity, 2300));
