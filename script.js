@@ -20,18 +20,19 @@ function createPetals(amount = 30) {
 createPetals();
 
 function startBirthdayCelebration() {
+  document.body.classList.add('celebration-lock');
   startCelebrationCanvas();
   const shower = $('#celebration-shower');
   const pieces = ['🌸', '🌹', '💖', '💕', '💗', '✨', '🎀', '🌺', '🎉', '🎊', '🩷'];
   shower.innerHTML = '';
   // Enough joy to feel festive, but deliberately limited so phones stay smooth.
-  // Large foreground flowers and hearts add a visible celebratory layer over the floral frame.
-  for (let i = 0; i < 42; i++) {
+  // A light foreground layer complements the floral scene without hiding the message.
+  for (let i = 0; i < 18; i++) {
     const piece = document.createElement('span');
     piece.className = 'celebration-piece';
     piece.textContent = pieces[Math.floor(Math.random() * pieces.length)];
     piece.style.setProperty('--left', `${Math.random() * 100}vw`);
-    piece.style.setProperty('--size', `${23 + Math.random() * 31}px`);
+    piece.style.setProperty('--size', `${16 + Math.random() * 20}px`);
     // Negative delays mean the celebration is already alive the instant the card appears.
     piece.style.setProperty('--delay', `${-Math.random() * 7}s`);
     piece.style.setProperty('--duration', `${4.8 + Math.random() * 3.8}s`);
@@ -56,6 +57,7 @@ passcode.addEventListener('keydown', (event) => { if (event.key === 'Enter') unl
 $('#enter-surprise').addEventListener('click', () => {
   const celebration = $('#birthday-celebration');
   celebration.classList.add('leaving');
+  document.body.classList.remove('celebration-lock');
   experience.classList.remove('waiting-to-open');
   startMainExperience();
   setTimeout(() => { celebration.hidden = true; $('#celebration-shower').innerHTML = ''; stopCelebrationCanvas(); }, 800);

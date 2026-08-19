@@ -13,7 +13,7 @@ function startCelebrationCanvas() {
     canvas.width = width * dpr; canvas.height = height * dpr;
     canvas.style.width = `${width}px`; canvas.style.height = `${height}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const total = width < 600 ? 125 : 210;
+    const total = width < 600 ? 80 : 140;
     petals = Array.from({ length: total }, (_, i) => makePetal(i < total * .78));
   }
   function makePetal(scatter) {
