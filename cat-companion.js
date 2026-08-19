@@ -14,12 +14,12 @@ function runCatActivity() {
   if (next === previousActivity) next = (next + 1 + Math.floor(Math.random() * (catActivities.length - 1))) % catActivities.length;
   previousActivity = next;
   const activity = catActivities[next];
-  companion.className = 'cat-companion';
-  void companion.offsetWidth; // restart location/entry animation cleanly
+  companion.className = 'cat-companion cat-dynamic';
+  void companion.offsetWidth; // restart the activity cleanly
   companion.classList.add(`activity-${activity.name}`, 'is-active');
   companionBubble.textContent = activity.bubble;
   companionBubble.classList.add('show');
   setTimeout(() => companionBubble.classList.remove('show'), 3300);
-  setTimeout(() => { companion.classList.remove('is-active'); setTimeout(runCatActivity, 1500 + Math.random() * 2500); }, activity.duration);
+  setTimeout(() => runCatActivity(), activity.duration);
 }
 document.addEventListener('main-experience-started', () => setTimeout(runCatActivity, 2300));
