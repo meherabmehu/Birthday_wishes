@@ -67,6 +67,9 @@ async function aiFloat() {
   setTimeout(() => note.remove(), 10500);
 }
 document.addEventListener('main-experience-started', () => {
-  setTimeout(aiFloat, 7000);
-  setInterval(aiFloat, 18000);
+  // AI cards remain available on phones; background AI floaters are skipped for smooth scrolling.
+  if (!window.matchMedia('(max-width: 768px)').matches) {
+    setTimeout(aiFloat, 7000);
+    setInterval(aiFloat, 18000);
+  }
 });

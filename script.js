@@ -183,14 +183,16 @@ function startMainExperience() {
   if (mainExperienceStarted) return;
   mainExperienceStarted = true;
   changeAtmosphere();
-  if (photos.length) setInterval(changeAtmosphere, 7000);
-  setInterval(releaseSpark, 3000);
-  setTimeout(floatLoveNote, 1400);
-  setInterval(floatLoveNote, 7000);
+  // Phones use fewer moving layers to keep scrolling smooth.
+  const lightMotion = window.matchMedia('(max-width: 768px)').matches;
+  if (photos.length) setInterval(changeAtmosphere, lightMotion ? 12000 : 7000);
+  if (!lightMotion) {
+    setInterval(releaseSpark, 3000);
+    setTimeout(floatLoveNote, 1400);
+    setInterval(floatLoveNote, 7000);
+  }
   updateCountdown();
   setInterval(updateCountdown, 30000);
-  // Preload the official player after the surprise opens, so the music button responds quickly.
-  createYouTubePlayer();
   document.dispatchEvent(new Event('main-experience-started'));
 }
 
@@ -251,8 +253,7 @@ musicRestart.addEventListener('click', () => {
   if (!youtubeReady) { musicLabel.textContent = 'Starting your surprise…'; createYouTubePlayer(); return; }
   youtubePlayer.seekTo(0, true); youtubePlayer.playVideo(); setMusicButton(true);
 });
-// Load the official player immediately but keep it silent; the first tap can play with minimal delay.
-createYouTubePlayer();
+// The official player loads only after the visitor taps Play, keeping the birthday site fast.
 
 // Smooth section entrances keep the journey premium rather than a static long page.
 const revealSections = document.querySelectorAll('.section');
