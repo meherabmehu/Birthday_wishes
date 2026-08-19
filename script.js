@@ -5,6 +5,10 @@ const experience = $('#experience');
 const passcode = $('#passcode');
 const codeMessage = $('#code-message');
 const unlock = $('#unlock');
+const MAIN_COOKIE = 'birthday_main_opened';
+function hasMainCookie() { return document.cookie.split('; ').some((item) => item.indexOf(`${MAIN_COOKIE}=yes`) === 0); }
+function setMainCookie() { document.cookie = `${MAIN_COOKIE}=yes; Path=/; Max-Age=2592000; SameSite=Lax`; }
+function clearMainCookie() { document.cookie = `${MAIN_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`; }
 
 function createPetals(amount = 30) {
   const holder = $('#petals');
@@ -56,6 +60,7 @@ passcode.addEventListener('keydown', (event) => { if (event.key === 'Enter') unl
 
 $('#enter-surprise').addEventListener('click', () => {
   const celebration = $('#birthday-celebration');
+  setMainCookie();
   celebration.classList.add('leaving');
   document.body.classList.remove('celebration-lock');
   experience.classList.remove('waiting-to-open');
@@ -248,4 +253,19 @@ $('#gift-box').addEventListener('click', () => {
   if (box.classList.contains('opened')) return;
   box.classList.add('opened');
   setTimeout(() => { $('#gift-reveal').hidden = false; }, 680);
+});
+
+// Cookie-only refresh resume. It runs once, after every interaction script is registered.
+function resumeMainBirthdayWorld() {
+  if (!hasMainCookie()) return;
+  lockScreen.hidden = true;
+  experience.hidden = false;
+  $('#birthday-celebration').hidden = true;
+  document.body.classList.remove('celebration-lock');
+  startMainExperience();
+}
+$('#start-over').addEventListener('click', () => {
+  clearMainCookie();
+  if (youtubeReady && youtubePlayer) youtubePlayer.pauseVideo();
+  window.location.assign(window.location.pathname);
 });
