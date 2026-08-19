@@ -274,7 +274,10 @@ function restoreUnlockedBirthdayWorld() {
   const urlSaysOpened = new URLSearchParams(window.location.search).get('opened') === '1';
   const hasUnlockedBefore = localStorage.getItem(UNLOCK_KEY) === 'yes' || sessionStorage.getItem(UNLOCK_KEY) === 'yes';
   const hasAlreadySeenGreeting = localStorage.getItem(GREETING_SEEN_KEY) === 'yes' || sessionStorage.getItem(GREETING_SEEN_KEY) === 'yes';
-  if (!urlSaysOpened && !hasUnlockedBefore && !hasAlreadySeenGreeting) return;
+  const navigation = performance.getEntriesByType('navigation')[0];
+  const wasRefreshed = navigation?.type === 'reload';
+  // A refresh must always return Nisa straight to the main website, even if mobile storage was cleared.
+  if (!wasRefreshed && !urlSaysOpened && !hasUnlockedBefore && !hasAlreadySeenGreeting) return;
   lockScreen.hidden = true;
   experience.hidden = false;
   $('#birthday-celebration').hidden = true;
@@ -294,7 +297,8 @@ $('#lock-again').addEventListener('click', () => {
   history.replaceState({}, '', `${cleanUrl.pathname}${cleanUrl.search}${cleanUrl.hash}`);
   if (youtubeReady && youtubePlayer) youtubePlayer.pauseVideo();
   window.scrollTo(0, 0);
-  window.location.reload();
+  // Navigate as a new visit, not a browser reload, so the code and greeting card return.
+  window.location.assign(`${cleanUrl.pathname}${cleanUrl.search}${cleanUrl.hash}`);
 });
 restoreUnlockedBirthdayWorld();
 window.addEventListener('pageshow', restoreUnlockedBirthdayWorld);
